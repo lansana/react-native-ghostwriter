@@ -7,33 +7,33 @@ Inspired by [Typed.js](https://github.com/mattboldt/typed.js/)
 ## Installation
 
 ```bash
-    npm install react-native-ghostwriter
+npm install react-native-ghostwriter
 ```
 
 ## Usage
 
 ```js
-    import React, { Component } from 'react';
-    import { View } from 'react-native';
-    import Ghostwriter from 'react-native-ghostwriter';
+import React, { Component } from 'react';
+import { View } from 'react-native';
+import Ghostwriter from 'react-native-ghostwriter';
 
-    class App extends Component {
-        let options = {
-            sequences: [
-                { string: 'Hello!', duration: 1000 },
-                { string: 'My name is Ghostwriter.', duration: 2500 },
-                { string: 'Try me out!' }
-            ]
-        };
+class App extends Component {
+    let options = {
+        sequences: [
+            { string: 'Hello!', duration: 1000 },
+            { string: 'My name is Ghostwriter.', duration: 2500 },
+            { string: 'Try me out!' }
+        ]
+    };
 
-        render() {
-            return (
-                <View>
-                    <Ghostwriter options={options} />
-                </View>
-            );
-        }
+    render() {
+        return (
+            <View>
+                <Ghostwriter options={options} />
+            </View>
+        );
     }
+}
 ```
 
 ## Documentation
@@ -45,9 +45,9 @@ startDelay | Int | 0 | The time (milliseconds) to wait before the typing starts
 stringStyles | Object | null | Add custom styles to your sequences
 containerStyles | Object | null | Add custom styles to the container of your sequences
 sequenceDuration | Int | 1750 | The time (milliseconds) to wait after each sequence before moving to the next sequence. Overridden by the 'duration' property in sequence.
-writeSpeed | Int | 0 | A value that represents the speed of the typer. The lower you go, the faster it types.
+writeSpeed | Int | 0 | A value that represents the speed of the typing. The lower you go, the faster it types.
 showCursor | Int | true | Set to false for no cursor
-cursorChar | String | "|" | The cursor character
+cursorChar | String | "\|" | The cursor character
 cursorSpeed | Int | 0 | The speed (in milliseconds) at which the cursor flashes
 ghostwriterComplete | Function | No operations | A callback function that is called after all sequences have been typed
 
