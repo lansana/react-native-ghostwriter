@@ -51,6 +51,12 @@ cursorChar | String | "\|" | The cursor character
 cursorSpeed | Int | 0 | The speed (in milliseconds) at which the cursor flashes
 ghostwriterComplete | Function | No operations | A callback function that is called after all sequences have been typed
 
+## Contributing
+
+Feel free to contribute by forking, opening issues, pull requests etc.
+
+All pull requests should be done on the 'dev' branch.
+
 ## License
 
 The MIT License (MIT)
