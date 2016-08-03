@@ -1,0 +1,27 @@
+{
+  "name": "react-native-ghostwriter",
+  "version": "0.0.1",
+  "description": "A React Native module that types strings on demand. Set up your Ghostwriter with custom options, and watch it do its magic. Inspired by Typed.js.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LansanaCamara/react-native-ghostwriter"
+  },
+  "keywords": [
+    "react-native",
+    "notifications",
+    "alerts",
+    "ghostwriter",
+    "autotyper",
+    "type"
+  ],
+  "author": {
+    "name": "Lansana Camara"
+  },
+  "license": "MIT",
+  "maintainers": [
+    {
+      "name": "lansana",
+      "email": "lxc5296@gmail.com"
+    }
+  ]
+}
