@@ -1,4 +1,4 @@
-import React, { Component } from '../node_modules/react';
+import React, {Component} from '../node_modules/react';
 import {
     StyleSheet,
     ScrollView,
@@ -10,6 +10,7 @@ let typeTimeout = null;
 let cursorInterval = null;
 
 class Ghostwriter extends Component {
+
     /**
      * Class constructor
      *
@@ -19,21 +20,22 @@ class Ghostwriter extends Component {
         super(props);
 
         this.state = {
-                startDelay: 0,
-                string: '',
-                stringStyles: null,
-                containerStyles: null,
-                clearEverySequence: false,
-                sequences: [],
-                sequenceDuration: 1750,
-                writeSpeed: 0,
-                showCursor: true,
-                cursorChar: '|',
-                cursorSpeed: 400,
-                cursorIndex: 0,
-                writing: false,
-                ghostwriterComplete: () => {}
-    };
+            startDelay: 0,
+            string: '',
+            stringStyles: null,
+            containerStyles: null,
+            clearEverySequence: false,
+            sequences: [],
+            sequenceDuration: 1750,
+            writeSpeed: 0,
+            showCursor: true,
+            cursorChar: '|',
+            cursorSpeed: 400,
+            cursorIndex: 0,
+            writing: false,
+            ghostwriterComplete: () => {
+            }
+        };
     }
 
     /**
@@ -45,12 +47,12 @@ class Ghostwriter extends Component {
         setTimeout(() => {
             this.initGhostwriter();
 
-        if (this.state.showCursor && !this.state.writing) {
-            cursorInterval = setInterval(() => {
+            if (this.state.showCursor && !this.state.writing) {
+                cursorInterval = setInterval(() => {
                     this.flashCursor();
-        }, this.state.cursorSpeed);
-        }
-    }, this.state.startDelay);
+                }, this.state.cursorSpeed);
+            }
+        }, this.state.startDelay);
     }
 
     /**
@@ -69,11 +71,11 @@ class Ghostwriter extends Component {
     render() {
         return (
             <View style={this.containerStyles()}>
-    <Text style={this.stringStyles()}>
-        {this.state.string} {this.getCursor()}
-    </Text>
-        </View>
-    );
+                <Text style={this.stringStyles()}>
+                    {this.state.string} {this.getCursor()}
+                </Text>
+            </View>
+        );
     }
 
     /**
@@ -143,44 +145,44 @@ class Ghostwriter extends Component {
         }
 
         typeTimeout = setTimeout(() => {
-                let char = sequences[seqId].string[charId];
+            let char = sequences[seqId].string[charId];
 
-        // There are still chars in this sequence
-        if (typeof char !== 'undefined') {
-            // Move to next char
-            charId++;
+            // There are still chars in this sequence
+            if (typeof char !== 'undefined') {
+                // Move to next char
+                charId++;
 
-            // Add new letter to string
-            this.setState({
-                string: this.state.string + char,
-                writing: true
-            });
+                // Add new letter to string
+                this.setState({
+                    string: this.state.string + char,
+                    writing: true
+                });
 
-            this.write(sequences, seqId, charId, this._humanSpeed(this.state.writeSpeed));
-        } else {
-            // Call the callback function of the sequence
-            if (this._isFunc(sequences[seqId].callback)) {
-                sequences[seqId].callback();
-            }
-
-            let duration;
-
-            // Get the duration for the next sequence. Use custom duration
-            // if provided by user, else use default.
-            if (sequences[seqId].hasOwnProperty('duration')) {
-                duration = sequences[seqId].duration;
+                this.write(sequences, seqId, charId, this._humanSpeed(this.state.writeSpeed));
             } else {
-                duration = this.state.sequenceDuration;
-            }
+                // Call the callback function of the sequence
+                if (this._isFunc(sequences[seqId].callback)) {
+                    sequences[seqId].callback();
+                }
 
-            // If this is not the last sequence in the list of sequences...
-            if (seqId !== sequences.length - 1) {
-                this.beforeNextSequence(duration - 100);
-            }
+                let duration;
 
-            this.nextSequence(sequences, seqId, charId, duration);
-        }
-    }, speed);
+                // Get the duration for the next sequence. Use custom duration
+                // if provided by user, else use default.
+                if (sequences[seqId].hasOwnProperty('duration')) {
+                    duration = sequences[seqId].duration;
+                } else {
+                    duration = this.state.sequenceDuration;
+                }
+
+                // If this is not the last sequence in the list of sequences...
+                if (seqId !== sequences.length - 1) {
+                    this.beforeNextSequence(duration - 100);
+                }
+
+                this.nextSequence(sequences, seqId, charId, duration);
+            }
+        }, speed);
     }
 
     /**
@@ -195,9 +197,9 @@ class Ghostwriter extends Component {
 
         setTimeout(() => {
             this.setState({
-            string: this.state.clearEverySequence ? '' : this.state.string + ' '
-        });
-    }, duration);
+                string: this.state.clearEverySequence ? '' : this.state.string + ' '
+            });
+        }, duration);
     }
 
     /**
@@ -229,11 +231,11 @@ class Ghostwriter extends Component {
 
         this._each(sequences, (sequence, i) => {
             if (sequence.hasOwnProperty('string')) {
-            sequences[i].string = sequence.string.split('');
-        } else {
-            throw new Error("Your sequences must all contain a 'string' property.");
-        }
-    });
+                sequences[i].string = sequence.string.split('');
+            } else {
+                throw new Error("Your sequences must all contain a 'string' property.");
+            }
+        });
 
         return sequences;
     }
@@ -299,6 +301,7 @@ class Ghostwriter extends Component {
         let getType = {};
         return fn && getType.toString.call(fn) === '[object Function]';
     }
+
 }
 
 /**
