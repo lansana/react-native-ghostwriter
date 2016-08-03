@@ -4,8 +4,6 @@ A React Native module that types strings on demand. Set up your Ghostwriter with
 
 Inspired by [Typed.js](https://github.com/mattboldt/typed.js/)
 
-![version](https://img.shields.io/npm/v/react-transmit.svg) ![license](https://img.shields.io/npm/l/react-transmit.svg) [![Package Quality](http://npm.packagequality.com/shield/react-transmit.svg)](http://packagequality.com/#?package=react-transmit) ![npm installs](https://img.shields.io/npm/dt/react-transmit.svg)
-
 ## Installation
 
 ```bash
@@ -16,6 +14,7 @@ Inspired by [Typed.js](https://github.com/mattboldt/typed.js/)
 
 ```js
     import React, { Component } from 'react';
+    import { View } from 'react-native';
     import Ghostwriter from 'react-native-ghostwriter';
 
     class App extends Component {
@@ -29,7 +28,9 @@ Inspired by [Typed.js](https://github.com/mattboldt/typed.js/)
 
         render() {
             return (
-                <Ghostwriter options={options} />
+                <View>
+                    <Ghostwriter options={options} />
+                </View>
             );
         }
     }
@@ -46,7 +47,7 @@ containerStyles | Object | null | Add custom styles to the container of your seq
 sequenceDuration | Int | 1750 | The time (milliseconds) to wait after each sequence before moving to the next sequence. Overridden by the 'duration' property in sequence.
 writeSpeed | Int | 0 | A value that represents the speed of the typer. The lower you go, the faster it types.
 showCursor | Int | true | Set to false for no cursor
-cursorChar | String | '|' | The cursor character
+cursorChar | String | "|" | The cursor character
 cursorSpeed | Int | 0 | The speed (in milliseconds) at which the cursor flashes
 ghostwriterComplete | Function | No operations | A callback function that is called after all sequences have been typed
 
