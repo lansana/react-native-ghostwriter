@@ -65,7 +65,7 @@ writeSpeed | Int | 0 | A value that represents the speed of the typing. The lowe
 showCursor | Int | true | Set to false for no cursor
 cursorChar | String | "\|" | The cursor character
 cursorSpeed | Int | 0 | The speed (in milliseconds) at which the cursor flashes
-ghostwriterComplete | Function | No operations | A callback function that is called after all sequences have been typed
+onComplete | Function | No operations | A callback function that is called after all sequences have been typed
 
 ## Contributing
 
