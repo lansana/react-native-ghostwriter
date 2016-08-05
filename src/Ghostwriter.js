@@ -300,8 +300,7 @@ class Ghostwriter extends Component {
      * @private
      */
     _isFunc(fn) {
-        let getType = {};
-        return fn && getType.toString.call(fn) === '[object Function]';
+        return fn && ( typeof fn === 'function' ) && ( Object.prototype.toString.call(fn) === '[object Function]' );
     }
 
 }
