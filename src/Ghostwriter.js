@@ -33,7 +33,7 @@ class Ghostwriter extends Component {
             cursorSpeed: 400,
             cursorIndex: 0,
             writing: false,
-            ghostwriterComplete: () => {}
+            onComplete: () => {}
         };
     }
 
@@ -143,7 +143,7 @@ class Ghostwriter extends Component {
 
         // All sequences complete
         if (finished) {
-            return this.state.ghostwriterComplete();
+            return this.state.onComplete();
         }
 
         typeTimeout = setTimeout(() => {
@@ -163,9 +163,7 @@ class Ghostwriter extends Component {
                 this.write(sequences, seqId, charId, this._humanSpeed(this.state.writeSpeed));
             } else {
                 // Call the callback function of the sequence
-                if (this._isFunc(sequences[seqId].callback)) {
-                    sequences[seqId].callback();
-                }
+                this.callback(sequences, seqId);
 
                 let duration;
 
@@ -240,6 +238,22 @@ class Ghostwriter extends Component {
         });
 
         return sequences;
+    }
+
+    /**
+     * Call the callback function of a specific sequence.
+     *
+     * @param sequences
+     * @param seqId
+     */
+    callback(sequences, seqId) {
+        if (sequences[seqId].hasOwnProperty('callback')) {
+            if (this._isFunc(sequences[seqId].callback)) {
+                sequences[seqId].callback();
+            } else {
+                throw new Error(`The callback for sequence #${seqId} is must be a function`);
+            }
+        }
     }
 
     /**
