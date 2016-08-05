@@ -14,26 +14,42 @@ npm install react-native-ghostwriter
 
 ```js
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import {
+    AppRegistry,
+    StyleSheet,
+    View
+} from 'react-native';
 import Ghostwriter from 'react-native-ghostwriter';
 
 class App extends Component {
-    let options = {
-        sequences: [
-            { string: 'Hello!', duration: 1000 },
-            { string: 'My name is Ghostwriter.', duration: 2500 },
-            { string: 'Try me out!' }
-        ]
-    };
-
     render() {
+        let options = {
+            sequences: [
+                { string: "A B C", duration: 2000 },
+                { string: "It's easy as, 1 2 3", duration: 2500 },
+                { string: 'As simple as, do re me' }
+            ]
+        };
+
         return (
-            <View>
+            <View style={styles.container}>
                 <Ghostwriter options={options} />
             </View>
         );
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingLeft: 25,
+        paddingRight: 25
+    }
+});
+
+AppRegistry.registerComponent('App', () => App);
 ```
 
 ## Documentation
@@ -50,6 +66,12 @@ showCursor | Int | true | Set to false for no cursor
 cursorChar | String | "\|" | The cursor character
 cursorSpeed | Int | 0 | The speed (in milliseconds) at which the cursor flashes
 ghostwriterComplete | Function | No operations | A callback function that is called after all sequences have been typed
+
+## Contributing
+
+Feel free to contribute by forking, opening issues, pull requests etc.
+
+All pull requests should be done on the 'dev' branch.
 
 ## License
 

@@ -33,8 +33,7 @@ class Ghostwriter extends Component {
             cursorSpeed: 400,
             cursorIndex: 0,
             writing: false,
-            ghostwriterComplete: () => {
-            }
+            ghostwriterComplete: () => {}
         };
     }
 
@@ -72,19 +71,13 @@ class Ghostwriter extends Component {
         return (
             <View style={this.containerStyles()}>
                 <Text style={this.stringStyles()}>
-                    {this.state.string} {this.getCursor()}
+                    {this.state.string}
+                </Text>
+                <Text style={styles.cursorStyles()}>
+                    {this.state.cursorChar}
                 </Text>
             </View>
         );
-    }
-
-    /**
-     * Get the cursor icon.
-     *
-     * @returns {string}
-     */
-    getCursor() {
-        return this.state.cursorIndex % 2 ? this.state.cursorChar : '';
     }
 
     /**
@@ -94,6 +87,15 @@ class Ghostwriter extends Component {
      */
     containerStyles() {
         return this.state.containerStyles ? this.state.containerStyles : styles.container;
+    }
+
+    /**
+     * The styles for the cursor.
+     *
+     * @returns {string}
+     */
+    cursorStyles() {
+        return this.state.cursorIndex % 2 ? styles.cursorShown : styles.cursorHidden;
     }
 
     /**
@@ -312,10 +314,11 @@ const styles = StyleSheet.create({
     string: {
         fontSize: 18,
         fontWeight: "300"
+    },
+    cursorShown: {},
+    cursorHidden: {
+        opacity: 0
     }
 });
 
-/**
- * Enjoy.
- */
 export default Ghostwriter
