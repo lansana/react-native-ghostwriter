@@ -46,7 +46,7 @@ class Ghostwriter extends Component {
         setTimeout(() => {
             this.initGhostwriter();
 
-            if (this.state.showCursor && !this.state.writing) {
+            if (this.state.showCursor) {
                 cursorInterval = setInterval(() => {
                     this.flashCursor();
                 }, this.state.cursorSpeed);
@@ -90,21 +90,21 @@ class Ghostwriter extends Component {
     }
 
     /**
-     * The styles for the cursor.
-     *
-     * @returns {string}
-     */
-    cursorStyles() {
-        return this.state.cursorIndex % 2 ? styles.cursorShown : styles.cursorHidden;
-    }
-
-    /**
      * The styles for our string.
      *
      * @returns {*}
      */
     stringStyles() {
         return this.state.stringStyles ? this.state.stringStyles : styles.string;
+    }
+
+    /**
+     * The styles for the cursor.
+     *
+     * @returns {string}
+     */
+    cursorStyles() {
+        return this.state.cursorIndex % 2 ? styles.cursorShown : styles.cursorHidden;
     }
 
     /**
