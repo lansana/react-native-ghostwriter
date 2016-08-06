@@ -1,10 +1,10 @@
-import React, {Component} from '../node_modules/react';
+import React, { Component } from '/node_modules/react';
 import {
     StyleSheet,
     ScrollView,
     View,
     Text
-} from '../node_modules/react-native';
+} from '/node_modules/react-native';
 import util from 'util';
 
 let typeTimeout = null;
