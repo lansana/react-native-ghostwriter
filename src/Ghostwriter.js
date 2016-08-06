@@ -5,6 +5,7 @@ import {
     View,
     Text
 } from '../node_modules/react-native';
+import util from 'util';
 
 let typeTimeout = null;
 let cursorInterval = null;
@@ -41,7 +42,7 @@ class Ghostwriter extends Component {
      * Component mounted.
      */
     componentDidMount() {
-        this.setState(this._extend(this.state, this.props.options));
+        this.setState(util.extend(this.state, this.props.options));
 
         setTimeout(() => {
             this.initGhostwriter();
@@ -124,7 +125,7 @@ class Ghostwriter extends Component {
             seqId = 0,
             charId = 0;
 
-        this.write(sequences, seqId, charId, this._humanSpeed(this.state.writeSpeed));
+        this.write(sequences, seqId, charId, util.humanSpeed(this.state.writeSpeed));
     }
 
     /**
@@ -150,7 +151,7 @@ class Ghostwriter extends Component {
             let char = sequences[seqId].string[charId];
 
             // There are still chars in this sequence
-            if (typeof char !== 'undefined') {
+            if (util.isUndefined(char)) {
                 // Move to next char
                 charId++;
 
@@ -160,7 +161,7 @@ class Ghostwriter extends Component {
                     writing: true
                 });
 
-                this.write(sequences, seqId, charId, this._humanSpeed(this.state.writeSpeed));
+                this.write(sequences, seqId, charId, util.humanSpeed(this.state.writeSpeed));
             } else {
                 // Call the callback function of the sequence
                 this.callback(sequences, seqId);
@@ -169,7 +170,7 @@ class Ghostwriter extends Component {
 
                 // Get the duration for the next sequence. Use custom duration
                 // if provided by user, else use default.
-                if (sequences[seqId].hasOwnProperty('duration')) {
+                if (util.has(sequences[seqId], 'duration')) {
                     duration = sequences[seqId].duration;
                 } else {
                     duration = this.state.sequenceDuration;
@@ -229,8 +230,8 @@ class Ghostwriter extends Component {
     getSequences() {
         let sequences = this.state.sequences;
 
-        this._each(sequences, (sequence, i) => {
-            if (sequence.hasOwnProperty('string')) {
+        util.arrayEach(sequences, (sequence, i) => {
+            if (util.has(sequence, 'string')) {
                 sequences[i].string = sequence.string.split('');
             } else {
                 throw new Error("Your sequences must all contain a 'string' property.");
@@ -247,74 +248,13 @@ class Ghostwriter extends Component {
      * @param seqId
      */
     callback(sequences, seqId) {
-        if (sequences[seqId].hasOwnProperty('callback')) {
-            if (this._isFunc(sequences[seqId].callback)) {
+        if (util.has(sequences[seqId], 'callback')) {
+            if (util.isFunction(sequences[seqId].callback)) {
                 sequences[seqId].callback();
             } else {
                 throw new Error(`The callback for sequence #${seqId} is must be a function`);
             }
         }
-    }
-
-    /**
-     * Human speed typing.
-     *
-     * @param speed
-     * @returns {*}
-     * @private
-     */
-    _humanSpeed(speed) {
-        return Math.round(Math.random() * (100 - 30)) + speed;
-    }
-
-    /**
-     * Loop array and use callback on each item
-     *
-     * @param arr
-     * @param callback
-     * @private
-     */
-    _each(arr, callback) {
-        let i = -1,
-            len = arr.length;
-
-        while (++i < len) {
-            callback(arr[i], i, arr);
-        }
-    }
-
-    /**
-     * Merge two objects.
-     *
-     * Only set the value if 'source' already has it (no custom
-     * props to prevent private props from being overridden).
-     *
-     * @param source
-     * @param options
-     * @returns {*}
-     * @private
-     */
-    _extend(source, options) {
-        let key;
-
-        for (key in options) {
-            if (source.hasOwnProperty(key) && options.hasOwnProperty(key)) {
-                source[key] = options[key];
-            }
-        }
-
-        return source;
-    }
-
-    /**
-     * Check if something is a function.
-     *
-     * @param fn
-     * @returns {*|boolean}
-     * @private
-     */
-    _isFunc(fn) {
-        return fn && ( typeof fn === 'function' ) && ( Object.prototype.toString.call(fn) === '[object Function]' );
     }
 
 }
