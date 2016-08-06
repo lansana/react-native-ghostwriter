@@ -1,10 +1,10 @@
-import React, {Component} from '../node_modules/react';
+import React, {Component} from 'react';
 import {
     StyleSheet,
     ScrollView,
     View,
     Text
-} from '../node_modules/react-native';
+} from 'react-native';
 
 let typeTimeout = null;
 let cursorInterval = null;
@@ -73,7 +73,7 @@ class Ghostwriter extends Component {
                 <Text style={this.stringStyles()}>
                     {this.state.string}
                 </Text>
-                <Text style={styles.cursorStyles()}>
+                <Text style={this.cursorStyles()}>
                     {this.state.cursorChar}
                 </Text>
             </View>
