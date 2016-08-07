@@ -79,7 +79,6 @@ class Ghostwriter extends Component {
                         {this.state.cursorChar}
                     </Text>
                 </Text>
-                </Text>
             </View>
         );
     }
