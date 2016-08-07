@@ -1,6 +1,6 @@
 {
   "name": "react-native-ghostwriter",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A React Native module that types strings on demand. Set up your Ghostwriter with custom options, and watch it do its magic. Inspired by Typed.js.",
   "repository": {
     "type": "git",
