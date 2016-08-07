@@ -11,7 +11,7 @@ npm install react-native-ghostwriter
 ```
 
 ## Demo
-[https://github.com/LansanaCamara/react-native-ghostwriter/blob/master/src/demo.gif|alt=React Native Ghostwriter Demo]
+![alt React Native Ghostwriter Demo](https://github.com/LansanaCamara/react-native-ghostwriter/blob/master/src/demo.gif "React Native Ghostwriter Demo")
 
 ## Usage
 
