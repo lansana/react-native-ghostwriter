@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import {
     StyleSheet,
@@ -77,6 +78,7 @@ class Ghostwriter extends Component {
                     <Text style={this.cursorStyles()}>
                         {this.state.cursorChar}
                     </Text>
+                </Text>
                 </Text>
             </View>
         );
