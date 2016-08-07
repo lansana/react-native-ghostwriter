@@ -10,6 +10,9 @@ Inspired by [Typed.js](https://github.com/mattboldt/typed.js/)
 npm install react-native-ghostwriter
 ```
 
+## Demo
+[[https://github.com/LansanaCamara/react-native-ghostwriter/blob/master/src/demo.gif|alt=React Native Ghostwriter Demo]]
+
 ## Usage
 
 ```js
