@@ -1,11 +1,11 @@
-import React, { Component } from '/node_modules/react';
+import React, { Component } from 'react';
 import {
     StyleSheet,
     ScrollView,
     View,
     Text
-} from '/node_modules/react-native';
-import util from 'util';
+} from 'react-native';
+import util from './util';
 
 let typeTimeout = null;
 let cursorInterval = null;
@@ -34,7 +34,8 @@ class Ghostwriter extends Component {
             cursorSpeed: 400,
             cursorIndex: 0,
             writing: false,
-            onComplete: () => {}
+            onComplete: () => {
+            }
         };
     }
 
@@ -73,9 +74,9 @@ class Ghostwriter extends Component {
             <View style={this.containerStyles()}>
                 <Text style={this.stringStyles()}>
                     {this.state.string}
-                </Text>
-                <Text style={styles.cursorStyles()}>
-                    {this.state.cursorChar}
+                    <Text style={this.cursorStyles()}>
+                        {this.state.cursorChar}
+                    </Text>
                 </Text>
             </View>
         );
@@ -151,7 +152,7 @@ class Ghostwriter extends Component {
             let char = sequences[seqId].string[charId];
 
             // There are still chars in this sequence
-            if (util.isUndefined(char)) {
+            if (!util.isUndefined(char)) {
                 // Move to next char
                 charId++;
 
@@ -268,9 +269,12 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: "300"
     },
-    cursorShown: {},
+    cursorShown: {
+        fontSize: 18
+    },
     cursorHidden: {
-        opacity: 0
+        opacity: 0,
+        fontSize: 18
     }
 });
 
