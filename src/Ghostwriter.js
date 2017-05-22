@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import {
     StyleSheet,
@@ -35,8 +34,7 @@ class Ghostwriter extends Component {
             cursorSpeed: 400,
             cursorIndex: 0,
             writing: false,
-            onComplete: () => {
-            }
+            onComplete: () => {}
         };
     }
 
@@ -254,7 +252,7 @@ class Ghostwriter extends Component {
             if (util.isFunction(sequences[seqId].callback)) {
                 sequences[seqId].callback();
             } else {
-                throw new Error(`The callback for sequence #${seqId} is must be a function`);
+                throw new Error(`The callback for sequence #${seqId} must be a function`);
             }
         }
     }
