@@ -72,12 +72,7 @@ class Ghostwriter extends Component {
         return (
             <View style={this.containerStyles()}>
                 <Text style={this.stringStyles()}>
-                    {this.state.string}
-					{this.cursorIsDiplayed() &&
-						<Text>
-							{this.state.cursorChar}
-						</Text>
-                    }
+                    {this.state.string} {this.cursorIsDiplayed() && <Text> {this.state.cursorChar} </Text>}
                 </Text>
             </View>
         );
@@ -254,7 +249,7 @@ class Ghostwriter extends Component {
             if (util.isFunction(sequences[seqId].callback)) {
                 sequences[seqId].callback();
             } else {
-                throw new Error(`The callback for sequence #${seqId} must be a function`);
+                throw new Error(`The callback for sequence #${seqId} must be a function.`);
             }
         }
     }
