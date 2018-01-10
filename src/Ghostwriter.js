@@ -44,7 +44,7 @@ class Ghostwriter extends Component {
     componentDidMount() {
         this.setState(util.extend(this.state, this.props.options));
 
-        setTimeout(() => {
+        this.ghostwriterTimeout = setTimeout(() => {
             this.initGhostwriter();
 
             if (this.state.showCursor) {
@@ -59,6 +59,8 @@ class Ghostwriter extends Component {
      * Component preparing to unmount.
      */
     componentWillUnmount() {
+        clearTimeout(this.ghostwriterTimeout)
+        clearTimeout(this.beforeNextSequenceTimeout)
         clearTimeout(typeTimeout);
         clearInterval(cursorInterval);
     }
@@ -193,7 +195,7 @@ class Ghostwriter extends Component {
             writing: false
         });
 
-        setTimeout(() => {
+        this.beforeNextSequenceTimeout = setTimeout(() => {
             this.setState({
                 string: this.state.clearEverySequence ? '' : this.state.string + ' '
             });
